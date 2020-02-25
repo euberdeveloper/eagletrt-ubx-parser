@@ -1,0 +1,7 @@
+{
+    "TYPE": "CSV",
+    "INPUTS": [
+        "esempio_tracciato_esterno",
+        "esempio_tracciato_interno"
+    ]
+}
