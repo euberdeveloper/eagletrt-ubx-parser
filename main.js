@@ -16,8 +16,8 @@ INPUTS.forEach(input => {
     const RMC = utils.getRMC(rows);
     const data = utils.getData(GGA, GLL, RMC);
 
-    const outputExtension = TYPE === 'CSV' ? 'csv' : 'json';
-    const outputPath = path.join(__dirname, 'outputs', `${input}.${outputExtension}`);
+    const outputExtension = (TYPE === 'CSV' ? 'csv' : 'json');
+    const outputPath = path.join(__dirname, 'outputs', outputExtension, `${input}.${outputExtension}`);
     const outputText = TYPE === 'CSV' ? utils.getCsvData(data) : utils.getJsonData(data);
     fs.writeFileSync(outputPath, outputText);
 
