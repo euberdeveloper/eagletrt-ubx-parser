@@ -27,3 +27,9 @@ To use this parser:
   * `INPUTS` is an array containing the name (without extension) of the file in the inputs folder that are to be parsed
 * Change the `config.json` file as wanted
 * Execute `npm start`, the parsed file will be in the `outputs/csv` or `outputs/json` folder
+
+## Notes
+
+From the ubx only the **GGA**, **GLL** and **RMC** messages are considered. 
+Only the **latitude** **longitude** and **timestamp** properties are kept.
+The coordinates are **converted** in a more suitable format, that can be used directly for instance on Google Earth.
