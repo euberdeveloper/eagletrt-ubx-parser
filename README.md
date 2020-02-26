@@ -1,12 +1,12 @@
 # eagletrt-ubx-parser
 
-A nodejs program for [@eagletrt](https://github.com/eagletrt) to parse GGA GLL and RMC messages of ubx files to csv or json
+A nodejs program for [@eagletrt](https://github.com/eagletrt) to parse GGA GLL RMC and VTG messages of ubx files to csv or json
 
 ## Project purpose
 
 The **telemetry of eagletrt** uses two high-precision **GPS**, one as **base-station** and another in the car as a **rover**. 
 The rover GPS data are parsed by the telemetry and saved in a local mongodb. The **base-station** saves instead a raw **ubx log** file.
-The purpose of this project is making easy to **parse** the wanted data (latitude, longitude and timestamp) and save it in an easy-handable
+The purpose of this project is making easy to **parse** the wanted data (latitude, longitude timestamp altitude and speed) and save it in an easy-handable
 format such as **json** and **csv**.
 
 ## How it was made
@@ -30,6 +30,10 @@ To use this parser:
 
 ## Notes
 
-From the ubx only the **GGA**, **GLL** and **RMC** messages are considered. 
-Only the **latitude** **longitude** and **timestamp** properties are kept.
+From the ubx only the **GGA**, **GLL**, **RMC** and **VTG** messages are considered. 
+
+Only the **latitude** **longitude** **timestamp** **altitude** and **speed** properties are kept.
+
 The coordinates are **converted** in a more suitable format, that can be used directly for instance on Google Earth.
+
+The **VTG** message provides only the **speed** parameter. All the other parameters will be set to **null**, including the timestamp. Hence, these messages will be at the beginning of the file. In general, every parameter that is not contained in a message is set to **null**.
