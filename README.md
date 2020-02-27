@@ -36,4 +36,4 @@ Only the **latitude** **longitude** **timestamp** **altitude** **speed** and **c
 
 The coordinates are **converted** in a more suitable format, that can be used directly for instance on Google Earth.
 
-Not all messages contain every parameter. In general, every parameter that is not contained in a message is set to **null**.
+Not all messages contain every parameter. In general, every parameter that is not contained in a message is set to **NaN**.

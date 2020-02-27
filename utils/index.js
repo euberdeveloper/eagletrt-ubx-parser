@@ -15,8 +15,8 @@ module.exports = {
                 latitude: words[2], 
                 longitude: words[4],
                 altitude: words[11],
-                speed_knots: null,
-                course: null
+                speed_knots: 'NaN',
+                course: 'NaN'
             }));
     },
     getGLL: function (rows) {
@@ -27,9 +27,9 @@ module.exports = {
                 utc_time: words[5], 
                 latitude: words[1], 
                 longitude: words[3],
-                altitude: null,
-                speed_knots: null,
-                course: null
+                altitude: 'NaN',
+                speed_knots: 'NaN',
+                course: 'NaN'
             }));
     },
     getRMC: function (rows) {
@@ -40,7 +40,7 @@ module.exports = {
                 utc_time: words[1], 
                 latitude: words[3], 
                 longitude: words[5],
-                altitude: null,
+                altitude: 'NaN',
                 speed_knots: words[7],
                 course: words[8]
             }));
@@ -54,7 +54,7 @@ module.exports = {
                 longitude: parseCoordinates(longitude),
                 altitude,
                 speed_knots,
-                course
+                course: !!course ? course : 'NaN'
             }));
     },
     getJsonData: function (data) {
