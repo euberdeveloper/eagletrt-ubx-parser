@@ -32,7 +32,7 @@ To use this parser:
 
 From the ubx only the **GGA**, **GLL** and **RMC** messages are considered. 
 
-Only the **latitude** **longitude** **timestamp** **altitude** and **speed** properties are kept.
+Only the **latitude** **longitude** **timestamp** **altitude** **speed** and **course** properties are kept.
 
 The coordinates are **converted** in a more suitable format, that can be used directly for instance on Google Earth.
 

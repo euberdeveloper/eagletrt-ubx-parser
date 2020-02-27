@@ -1,13 +1,3 @@
-function purgeNull (value) {
-    return {
-        utc_time: value.utc_time === null ? 'null' : value.utc_time,
-        latitude: value.latitude === null ? 'null' : value.latitude,
-        longitude: value.longitude === null ? 'null' : value.longitude,
-        altitude: value.altitude === null ? 'null' : value.altitude,
-        speed_knots: value.speed_knots === null ? 'null' : value.speed_knots
-    };
-}
-
 function parseCoordinates (value) {
     const temp = +value / 100;
     const left = Math.floor(temp);
@@ -24,8 +14,9 @@ module.exports = {
                 utc_time: words[1], 
                 latitude: words[2], 
                 longitude: words[4],
-                altitude: words[9],
-                speed_knots: null
+                altitude: words[11],
+                speed_knots: null,
+                course: null
             }));
     },
     getGLL: function (rows) {
@@ -37,7 +28,8 @@ module.exports = {
                 latitude: words[1], 
                 longitude: words[3],
                 altitude: null,
-                speed_knots: null
+                speed_knots: null,
+                course: null
             }));
     },
     getRMC: function (rows) {
@@ -49,26 +41,28 @@ module.exports = {
                 latitude: words[3], 
                 longitude: words[5],
                 altitude: null,
-                speed_knots: words[7]
+                speed_knots: words[7],
+                course: words[8]
             }));
     },
     getData: function (GGA, GLL, RMC) {
         return [...GGA, ...GLL, ...RMC]
             .sort((x, y) => x.utc_time - y.utc_time)
-            .map(({ utc_time, latitude, longitude, altitude, speed_knots }) => ({ 
+            .map(({ utc_time, latitude, longitude, altitude, speed_knots, course }) => ({ 
                 utc_time, 
                 latitude: parseCoordinates(latitude),
                 longitude: parseCoordinates(longitude),
                 altitude,
-                speed_knots
+                speed_knots,
+                course
             }));
     },
     getJsonData: function (data) {
         return JSON.stringify(data, null, 2);
     },
     getCsvData: function (data) {
-        return 'utc_time\tlatitude\tlongitude\taltitude\tspeed_knots\n' + data
-            .map(({ utc_time, latitude, longitude, altitude, speed_knots }) => `${utc_time}\t${latitude}\t${longitude}\t${altitude}\t${speed_knots}\n`)
+        return 'utc_time\tlatitude\tlongitude\taltitude\tspeed_knots\tcourse\n' + data
+            .map(({ utc_time, latitude, longitude, altitude, speed_knots, course }) => `${utc_time}\t${latitude}\t${longitude}\t${altitude}\t${speed_knots}\t${course}\n`)
             .join('');
     }
 };
