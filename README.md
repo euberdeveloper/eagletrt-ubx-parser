@@ -1,6 +1,6 @@
 # eagletrt-ubx-parser
 
-A nodejs program for [@eagletrt](https://github.com/eagletrt) to parse GGA GLL RMC and VTG messages of ubx files to csv or json
+A nodejs program for [@eagletrt](https://github.com/eagletrt) to parse GGA GLL and RMC messages of ubx files to csv or json
 
 ## Project purpose
 
@@ -30,10 +30,10 @@ To use this parser:
 
 ## Notes
 
-From the ubx only the **GGA**, **GLL**, **RMC** and **VTG** messages are considered. 
+From the ubx only the **GGA**, **GLL** and **RMC** messages are considered. 
 
 Only the **latitude** **longitude** **timestamp** **altitude** and **speed** properties are kept.
 
 The coordinates are **converted** in a more suitable format, that can be used directly for instance on Google Earth.
 
-The **VTG** message provides only the **speed** parameter. All the other parameters will be set to **null**, including the timestamp. Hence, these messages will be at the beginning of the file. In general, every parameter that is not contained in a message is set to **null**.
+Not all messages contain every parameter. In general, every parameter that is not contained in a message is set to **null**.

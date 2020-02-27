@@ -14,8 +14,7 @@ INPUTS.forEach(input => {
     const GGA = utils.getGGA(rows);
     const GLL = utils.getGLL(rows);
     const RMC = utils.getRMC(rows);
-    const VTG = utils.getVTG(rows);
-    const data = utils.getData(GGA, GLL, RMC, VTG);
+    const data = utils.getData(GGA, GLL, RMC);
 
     const outputExtension = (TYPE === 'CSV' ? 'csv' : 'json');
     const outputPath = path.join(__dirname, 'outputs', outputExtension, `${input}.${outputExtension}`);
